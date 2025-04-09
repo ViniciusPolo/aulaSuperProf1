@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo Par ou Ímpar</title>
+  <style>
+    /* Mantendo o seu estilo original */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    #header {
+      background-color: #0077cc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    #main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 500;
+    }
+
+    input[type="number"],
+    select {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    input[type="button"] {
+      padding: 10px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1em;
+    }
+
+    input[type="button"]:hover {
+      background-color: #005fa3;
+    }
+
+    #resultado-jogo {
+      text-align: center;
+    }
+
+    #footer {
+      background-color: #e0e0e0;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">Jogo Par ou Ímpar</header>
+
+  <main id="main-content">
+    <div class="form-container">
+      <form id="par-impar-form">
+        <label for="escolha">Escolha:</label>
+        <select id="escolha">
+          <option value="par">Par</option>
+          <option value="impar">Ímpar</option>
+        </select>
+
+        <label for="numeroUsuario">Seu número (maior que 0):</label>
+        <input type="number" id="numeroUsuario" min="1"/>
+
+        <input type="button" value="Jogar" id="jogar-btn" />
+        <p id="resultado-jogo"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer id="footer">Aula 1</footer>
+
+  <script>
+    document.getElementById("jogar-btn").addEventListener("click", () => {
+      const escolha = document.getElementById("escolha").value;
+      const numeroUsuario = parseInt(document.getElementById("numeroUsuario").value);
+      const resultadoEl = document.getElementById("resultado-jogo");
+
+      if (isNaN(numeroUsuario) || numeroUsuario <= 0) {
+        resultadoEl.innerHTML = "Digite um número válido maior que 0!";
+        return;
+      }
+
+      // Computador sorteia número maior que 0 até 10
+      let numeroComputador = 0;
+      do {
+        numeroComputador = Math.floor(Math.random() * 10) + 1;
+      } while (numeroComputador === 0);
+
+      const soma = numeroUsuario + numeroComputador;
+      const resultadoParImpar = soma % 2 === 0 ? "par" : "impar";
+
+      let mensagem = `
+        Seu número: ${numeroUsuario}<br>
+        Número do computador: ${numeroComputador}<br>
+        Soma: ${soma} (${resultadoParImpar.toUpperCase()})<br>
+      `;
+
+      if (escolha === resultadoParImpar) {
+        mensagem += "<strong>Você venceu! 🎉</strong>";
+      } else {
+        mensagem += "<strong>Computador venceu! 😢</strong>";
+      }
+
+      resultadoEl.innerHTML = mensagem;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Números</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Layout geral */
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Cabeçalho */
+        #header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        /* Conteúdo principal */
+        #main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        /* Formulário */
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #sorteador-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #sorteador-form label {
+            font-weight: 500;
+        }
+
+        #quantidadeDeNumeros {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        /* Botão */
+        #sortear-btn {
+            padding: 10px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+        }
+
+        #sortear-btn:hover {
+            background-color: #005fa3;
+        }
+
+        #resultado {
+            text-align: center;
+        }
+
+        /* Rodapé */
+        #footer {
+            background-color: #e0e0e0;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">Sorteador de Números</header>
+    <main id="main-content">
+        <div class="form-container">
+            <form id="sorteador-form">
+                <label for="quantidadeDeNumeros">Quantidade de Números</label>
+                <input type="number" name="quantidadeDeNumeros" id="quantidadeDeNumeros"/> 
+                <input type="button" value="Sortear" id="sortear-btn"/>
+                <p id="resultado"></p>
+                <p id="sorteados"></p>
+            </form>
+        </div>
+    </main>
+    <footer id="footer">Aula 1</footer>
+</body>
+<script>
+    // function sortearNumeros() {
+    //     var quantidadeDeNumeros = document.getElementById("quantidadeDeNumeros").value;
+    //     const numeroSorteado = Math.floor(Math.random() * quantidadeDeNumeros);
+    //     document.getElementById("resultado").innerHTML = "O número sorteado é: " + numeroSorteado;
+    // }
+
+    function sortearNumeros() {
+        const quantidade = parseInt(document.getElementById("quantidadeDeNumeros").value);
+        const resultadoEl = document.getElementById("resultado");
+        const sorteados = document.getElementById("sorteados");
+        
+
+        if (isNaN(quantidade) || quantidade <= 0) {
+            resultadoEl.innerHTML = "Digite um número válido!";
+            return;
+        }
+
+        const numeroFinal = Math.floor(Math.random() * quantidade);
+
+        let i = 0;
+        const intervalo = setInterval(() => {
+            const numeroTemp = Math.floor(Math.random() * quantidade);
+            resultadoEl.innerHTML = `Sorteando: ${numeroTemp}`;
+            i++;
+
+            if (i >= 20) {
+                clearInterval(intervalo);
+                setTimeout(() => {
+                    resultadoEl.innerHTML = `<strong>O número sorteado é: ${numeroFinal}</strong>`;
+                }, 300);
+            }
+        }, 50); // intervalo de 100ms entre os sorteios temporários;
+    }
+    document.getElementById("sortear-btn").addEventListener("click", sortearNumeros);
+</script>
+</html>

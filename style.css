@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Layout geral */
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Cabeçalho */
+#header {
+    background-color: #0077cc;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+/* Conteúdo principal */
+#main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Formulário */
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+#sorteador-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#sorteador-form label {
+    font-weight: 500;
+}
+
+#quantidadeDeNumeros {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Botão */
+#sortear-btn {
+    padding: 10px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+#sortear-btn:hover {
+    background-color: #005fa3;
+}
+
+#resultado {
+    text-align: center;
+}
+
+/* Rodapé */
+#footer {
+    background-color: #e0e0e0;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9em;
+    color: #555;
+}
